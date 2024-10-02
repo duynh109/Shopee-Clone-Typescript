@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <footer className='py-14 bg-neutral-100'>
+    <footer className='py-11 bg-neutral-100'>
       <div className='max-w-7xl mx-auto px-4'>
         <div className='flex items-start text-xs'>
           <div className='flex-1 p-[0.3125rem]'>
@@ -270,7 +270,7 @@ export default function Footer() {
         </div>
       </div>
       <div className='max-w-7xl mx-auto px-4'>
-        <div className='text-center text-sm mt-10'>
+        <div className='text-center text-xs mt-5 text-black/65'>
           <div className='mb-6'>Công ty TNHH Shopee</div>
           <div className='mt-2'>
             Địa chỉ: Tầng 4-5-6, Tòa nhà Capital Place, số 29 đường Liễu Giai, Phường Ngọc Khánh, Quận Ba Đình, Thành
