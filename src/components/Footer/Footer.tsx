@@ -1,7 +1,7 @@
 export default function Footer() {
   return (
     <footer className='py-11 bg-neutral-100'>
-      <div className='max-w-7xl mx-auto px-4'>
+      <div className='container'>
         <div className='flex items-start text-xs'>
           <div className='flex-1 p-[0.3125rem]'>
             <div className='font-bold mb-5'>CHĂM SÓC KHÁCH HÀNG</div>

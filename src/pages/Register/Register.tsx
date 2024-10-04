@@ -30,10 +30,11 @@ export default function Register() {
 
   // const formValues = watch()
   // console.log(formValues)
+  console.log('email', rules.email)
 
   return (
     <div className='bg-orange'>
-      <div className='max-w-7xl mx-auto px-4'>
+      <div className='container'>
         <div className='grid grid-cols-1 lg:grid-cols-5 py-12 lg:py-20 lg:pr-10'>
           <div className='lg:col-span-2 lg:col-start-4'>
             <form className='p-10 rounded bg-white shadow-sm' onSubmit={onSubmit} noValidate>
@@ -43,7 +44,7 @@ export default function Register() {
                   type='email'
                   className='p-3 w-full outline-none border border-gray-300 focus:border-gray-500 rounded-sm focus:shadow-sm'
                   placeholder='Email'
-                  {...register('email', rules.email)}
+                  {...register('email', rules.email as any)}
                 />
                 <div className='mt-1 text-red-600 min-h-[1.25rem] text-sm'>{errors.email?.message}</div>
               </div>
@@ -53,7 +54,7 @@ export default function Register() {
                   className='p-3 w-full outline-none border border-gray-300 focus:border-gray-500 rounded-sm focus:shadow-sm'
                   placeholder='Password'
                   autoComplete='on'
-                  {...register('password', rules.password)}
+                  {...register('password', rules.password as any)}
                 />
                 <div className='mt-1 text-red-600 min-h-[1.25rem] text-sm'>{errors.password?.message}</div>
               </div>
@@ -63,9 +64,7 @@ export default function Register() {
                   className='p-3 w-full outline-none border border-gray-300 focus:border-gray-500 rounded-sm focus:shadow-sm'
                   placeholder='Confirm Password'
                   autoComplete='on'
-                  {...register('confirm_password', {
-                    ...rules.confirm_password
-                  })}
+                  {...register('confirm_password', rules.confirm_password as any)}
                 />
                 <div className='mt-1 text-red-600 min-h-[1.25rem] text-sm'>{errors.confirm_password?.message}</div>
               </div>
