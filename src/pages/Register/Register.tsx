@@ -8,6 +8,7 @@ import { schema, Schema } from '../../utils/rules'
 import { registerAccount } from '../../apis/auth.api'
 import { isAxiosUnprocessableEntityError } from '../../utils/utils'
 import { ResponseApi } from '../../types/utils.type'
+
 type FormData = Schema
 
 export default function Register() {
