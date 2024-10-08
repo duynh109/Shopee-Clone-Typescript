@@ -10,6 +10,9 @@ export default {
     extend: {
       colors: {
         orange: '#ee4d2d'
+      },
+      maxWidth: {
+        custom: '85rem'
       }
     }
   },
@@ -17,7 +20,7 @@ export default {
     plugin(function ({ addComponents, theme }) {
       addComponents({
         '.container': {
-          maxWidth: theme('columns.7xl'),
+          maxWidth: theme('maxWidth.custom'),
           marginLeft: 'auto',
           marginRight: 'auto',
           paddingLeft: theme('spacing.4'),
