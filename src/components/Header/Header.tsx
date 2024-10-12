@@ -1,26 +1,46 @@
 import { Link } from 'react-router-dom'
+import { useMutation } from '@tanstack/react-query'
+import { useContext } from 'react'
 import Popover from '../Popover'
+import { logout } from '../../apis/auth.api'
+import { AppContext } from '../../contexts/app.context'
 
 export default function Header() {
+  const { isAuthenticated, setIsAuthenticated } = useContext(AppContext)
+  const logoutMutation = useMutation({
+    mutationFn: logout,
+    onSuccess: () => {
+      setIsAuthenticated(false)
+    }
+  })
+
+  const handleLogout = () => {
+    logoutMutation.mutate()
+  }
   return (
     <div className='pb-5 pt-2 bg-[linear-gradient(-180deg,#f53d2d,#f63)] text-white text-sm'>
       <div className='container'>
         <div className='flex justify-between'>
           <div className='flex items-center'>
-            <a href='/' className='hover:text-gray-200 cursor-pointer p-1' target='_blank' rel='noopener noreferrer'>
+            <a
+              href='/'
+              className='hover:text-white/70 cursor-pointer p-1 text-[13px]'
+              target='_blank'
+              rel='noopener noreferrer'
+            >
               Kênh người bán
             </a>
             <div className='flex ml-2'>
               <a
                 href='/'
-                className='relative p-1 hover:text-gray-200 cursor-pointer after:content-[""] after:absolute after:left-[-4px] after:top-1 after:bottom-1.5 after:border-l after:border-r after:border-[1px] after:border-solid after:border-[hsla(0,0%,100%,.22)] '
+                className='relative p-1 hover:text-white/70 cursor-pointer after:content-[""] after:absolute after:left-[-4px] after:top-1 after:bottom-1.5 after:border-l after:border-r after:border-[1px] after:border-solid after:border-[hsla(0,0%,100%,.22)] text-[13px]'
                 target='_blank'
                 rel='noopener noreferrer'
               >
                 Tải ứng dụng
               </a>
             </div>
-            <div className='flex ml-2 relative p-1 after:content-[""] after:absolute after:left-[-4px] after:top-1 after:bottom-1.5 after:border-l after:border-r after:border-[1px] after:border-solid after:border-[hsla(0,0%,100%,.22)] '>
+            <div className='flex ml-2 relative p-1 after:content-[""] after:absolute after:left-[-4px] after:top-1 after:bottom-1.5 after:border-l after:border-r after:border-[1px] after:border-solid after:border-[hsla(0,0%,100%,.22)] text-[13px]'>
               Kết nối
             </div>
             <div className='flex'>
@@ -41,69 +61,124 @@ export default function Header() {
             </div>
           </div>
           <div className='flex-1'></div>
-          <Popover
-            className='flex items-center hover:text-gray-200 cursor-pointer'
-            renderPopover={
-              <div className='relative bg-white shadow-md rounded-sm border border-gray-200 text-sm'>
-                <div className='flex flex-col pr-28'>
-                  <button className='py-2 px-3 hover:text-orange text-left'>Tiếng Việt</button>
-                  <button className='py-2 px-3 hover:text-orange text-left'>English</button>
-                </div>
-              </div>
-            }
-          >
-            <svg
-              xmlns='http://www.w3.org/2000/svg'
-              fill='none'
-              viewBox='0 0 24 24'
-              strokeWidth={1.5}
-              stroke='currentColor'
-              className='size-5'
-            >
-              <path
-                strokeLinecap='round'
-                strokeLinejoin='round'
-                d='M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418'
-              />
-            </svg>
-            <span className='mx-1'>Tiếng Việt</span>
-            <svg
-              xmlns='http://www.w3.org/2000/svg'
-              fill='none'
-              viewBox='0 0 24 24'
-              strokeWidth={1.5}
-              stroke='currentColor'
-              className='size-5'
-            >
-              <path strokeLinecap='round' strokeLinejoin='round' d='m19.5 8.25-7.5 7.5-7.5-7.5' />
-            </svg>
-          </Popover>
-          <Popover
-            className='flex items-center hover:text-gray-200 cursor-pointer ml-6'
-            renderPopover={
-              <div className='relative shadow-md rounded-sm border border-gray-200 text-sm'>
-                <div className='flex flex-col'>
-                  <Link to={'/profile'} className='block py-2 px-3 hover:bg-slate-100 bg-white hover:text-cyan-500'>
-                    Tài khoản của tôi
-                  </Link>
-                  <Link to={'/'} className='block py-2 px-3 hover:bg-slate-100 bg-white hover:text-cyan-500'>
-                    Đơn mua
-                  </Link>
-                  <button className='text-left w-full block py-2 px-3 hover:bg-slate-100 bg-white hover:text-cyan-500'>
-                    Đăng xuất
-                  </button>
-                </div>
-              </div>
-            }
-          >
-            <div className='w-6 h-6 mr-2 flex-shrink-0'>
-              <img
-                src='https://down-vn.img.susercontent.com/file/7c7e682bcb00bf2687fea549e050bf35_tn'
-                className='w-full h-full object-cover rounded-full'
-              />
+          <div className='flex'>
+            <div className='flex items-center hover:text-white/70 text-[13px] cursor-pointer'>
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                fill='none'
+                viewBox='0 0 24 24'
+                strokeWidth={1.5}
+                stroke='currentColor'
+                className='size-5'
+              >
+                <path
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                  d='M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0'
+                />
+              </svg>
+              <span className='mx-1'>Thông Báo</span>
             </div>
-            <div>hoangduy_2002</div>
-          </Popover>
+            <div className='flex items-center hover:text-white/70 text-[13px] cursor-pointer ml-1 mr-[20px]'>
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                fill='none'
+                viewBox='0 0 24 24'
+                strokeWidth={1.5}
+                stroke='currentColor'
+                className='size-5'
+              >
+                <path
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                  d='M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z'
+                />
+              </svg>
+
+              <span className='mx-1'>Hỗ Trợ</span>
+            </div>
+            <Popover
+              className='flex items-center hover:text-white/70 text-[13px] cursor-pointer'
+              renderPopover={
+                <div className='relative bg-white shadow-md rounded-sm border border-gray-200'>
+                  <div className='flex flex-col pr-28'>
+                    <button className='py-2 px-3 hover:text-orange text-left text-sm'>Tiếng Việt</button>
+                    <button className='py-2 px-3 hover:text-orange text-left text-sm'>English</button>
+                  </div>
+                </div>
+              }
+            >
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                fill='none'
+                viewBox='0 0 24 24'
+                strokeWidth={1.5}
+                stroke='currentColor'
+                className='size-5'
+              >
+                <path
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                  d='M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418'
+                />
+              </svg>
+              <span className='mx-1'>Tiếng Việt</span>
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                fill='none'
+                viewBox='0 0 24 24'
+                strokeWidth={1.5}
+                stroke='currentColor'
+                className='size-4'
+              >
+                <path strokeLinecap='round' strokeLinejoin='round' d='m19.5 8.25-7.5 7.5-7.5-7.5' />
+              </svg>
+            </Popover>
+            {isAuthenticated && (
+              <Popover
+                className='flex items-center hover:text-gray-200 cursor-pointer ml-[20px]'
+                renderPopover={
+                  <div className='relative shadow-md rounded-sm border border-gray-200 text-sm'>
+                    <div className='flex flex-col'>
+                      <Link to={'/profile'} className='block py-2 px-3 hover:bg-slate-100 bg-white hover:text-cyan-500'>
+                        Tài khoản của tôi
+                      </Link>
+                      <Link to={'/'} className='block py-2 px-3 hover:bg-slate-100 bg-white hover:text-cyan-500'>
+                        Đơn mua
+                      </Link>
+                      <button
+                        onClick={handleLogout}
+                        className='text-left w-full block py-2 px-3 hover:bg-slate-100 bg-white hover:text-cyan-500'
+                      >
+                        Đăng xuất
+                      </button>
+                    </div>
+                  </div>
+                }
+              >
+                <div className='w-6 h-6 mr-2 flex-shrink-0'>
+                  <img
+                    src='https://down-vn.img.susercontent.com/file/7c7e682bcb00bf2687fea549e050bf35_tn'
+                    className='w-full h-full object-cover rounded-full'
+                  />
+                </div>
+                <div>hoangduy_2002</div>
+              </Popover>
+            )}
+            {!isAuthenticated && (
+              <>
+                <div className='flex items-center text-[13px]'>
+                  <Link to='/register' className='mx-3 capitalize hover:text-white/70'>
+                    Đăng ký
+                  </Link>
+                  <div className='border-r-[1px] border-r-white/40 h-4' />
+                  <Link to='/login' className='mx-3 capitalize hover:text-white/70'>
+                    Đăng nhập
+                  </Link>
+                </div>
+              </>
+            )}
+          </div>
         </div>
         <div className='grid grid-cols-12 gap-4 mt-4 items-end'>
           <Link to='/' className='col-span-2'>
