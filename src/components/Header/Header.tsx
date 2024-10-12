@@ -79,7 +79,7 @@ export default function Header() {
               </svg>
               <span className='mx-1'>Thông Báo</span>
             </div>
-            <div className='flex items-center hover:text-white/70 text-[13px] cursor-pointer ml-1 mr-[20px]'>
+            <div className='flex items-center hover:text-white/70 text-[13px] cursor-pointer ml-1 mr-4'>
               <svg
                 xmlns='http://www.w3.org/2000/svg'
                 fill='none'
@@ -136,7 +136,7 @@ export default function Header() {
             </Popover>
             {isAuthenticated && (
               <Popover
-                className='flex items-center hover:text-gray-200 cursor-pointer ml-[20px]'
+                className='flex items-center hover:text-gray-200 cursor-pointer ml-4'
                 renderPopover={
                   <div className='relative shadow-md rounded-sm border border-gray-200 text-sm'>
                     <div className='flex flex-col'>
