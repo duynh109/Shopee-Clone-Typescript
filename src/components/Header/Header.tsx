@@ -4,19 +4,22 @@ import { useContext } from 'react'
 import Popover from '../Popover'
 import { logout } from '../../apis/auth.api'
 import { AppContext } from '../../contexts/app.context'
+import path from '../../constants/path'
 
 export default function Header() {
-  const { isAuthenticated, setIsAuthenticated } = useContext(AppContext)
+  const { isAuthenticated, setIsAuthenticated, profile, setProfile } = useContext(AppContext)
   const logoutMutation = useMutation({
     mutationFn: logout,
     onSuccess: () => {
       setIsAuthenticated(false)
+      setProfile(null)
     }
   })
 
   const handleLogout = () => {
     logoutMutation.mutate()
   }
+
   return (
     <div className='pb-5 pt-2 bg-[linear-gradient(-180deg,#f53d2d,#f63)] text-white text-sm'>
       <div className='container'>
@@ -136,11 +139,15 @@ export default function Header() {
             </Popover>
             {isAuthenticated && (
               <Popover
+                placement='bottom'
                 className='flex items-center hover:text-gray-200 cursor-pointer ml-4'
                 renderPopover={
                   <div className='relative shadow-md rounded-sm border border-gray-200 text-sm'>
                     <div className='flex flex-col'>
-                      <Link to={'/profile'} className='block py-2 px-3 hover:bg-slate-100 bg-white hover:text-cyan-500'>
+                      <Link
+                        to={path.profile}
+                        className='block py-2 px-3 hover:bg-slate-100 bg-white hover:text-cyan-500'
+                      >
                         Tài khoản của tôi
                       </Link>
                       <Link to={'/'} className='block py-2 px-3 hover:bg-slate-100 bg-white hover:text-cyan-500'>
@@ -162,17 +169,17 @@ export default function Header() {
                     className='w-full h-full object-cover rounded-full'
                   />
                 </div>
-                <div>hoangduy_2002</div>
+                <div>{profile?.email}</div>
               </Popover>
             )}
             {!isAuthenticated && (
               <>
                 <div className='flex items-center text-[13px]'>
-                  <Link to='/register' className='mx-3 capitalize hover:text-white/70'>
+                  <Link to={path.register} className='mx-3 capitalize hover:text-white/70'>
                     Đăng ký
                   </Link>
                   <div className='border-r-[1px] border-r-white/40 h-4' />
-                  <Link to='/login' className='mx-3 capitalize hover:text-white/70'>
+                  <Link to={path.login} className='mx-3 capitalize hover:text-white/70'>
                     Đăng nhập
                   </Link>
                 </div>
