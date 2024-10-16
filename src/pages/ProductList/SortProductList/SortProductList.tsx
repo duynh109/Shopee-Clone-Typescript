@@ -1,9 +1,9 @@
 export default function SortProductList() {
   return (
-    <div className='bg-[rgba(0,0,0,0.03)] py-4 px-3'>
+    <div className='bg-[rgba(0,0,0,0.03)] py-3 px-5'>
       <div className='flex items-center justify-between gap-2'>
         <div className='flex items-center gap-2'>
-          <div>Sắp xếp theo</div>
+          <div className='text-[#555] text-sm'>Sắp xếp theo</div>
           <button className='h-8 px-4 capitalize bg-orange text-white text-sm hover:bg-orange/80 text-center rounded-sm'>
             Phổ biến
           </button>
