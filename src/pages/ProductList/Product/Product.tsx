@@ -1,12 +1,16 @@
 import { Link } from 'react-router-dom'
 import { Product as ProductType } from '../../../types/product.type'
 import { formatCurrency, formatNumberToSocialStyle } from '../../../utils/utils'
+import ProductRating from '../../../components/ProductRating'
 
 interface Props {
   product: ProductType
 }
 
 export default function Product({ product }: Props) {
+  const discountPercentage = Math.round(
+    ((product.price_before_discount - product.price) / product.price_before_discount) * 100
+  )
   return (
     <Link to='/'>
       <div className='bg-white shadow rounded-sm hover:translate-y-[-0.05rem] hover:shadow-md duration-100 transition-transform overflow-hidden'>
@@ -28,180 +32,16 @@ export default function Product({ product }: Props) {
               ₫{formatCurrency(product.price_before_discount)}
             </div>
             <div className='bg-[#feeeea] ml-1 p-[0.125rem]'>
-              <span className='text-orange text-[0.625rem] leading-[0.75rem] block'>-53%</span>
+              <span className='text-orange text-[0.625rem] leading-[0.75rem] block'>-{discountPercentage}%</span>
             </div>
           </div>
           <div className='mt-3 flex items-center'>
-            <div className='flex items-center overflow-hidden shrink-0'>
-              <div className='relative inline-block'>
-                <div className='flex'>
-                  <div className='flex items-center mr-[1px] relative'>
-                    <div className='absolute top-0 left-0 h-full overflow-hidden' style={{ width: '100%' }}>
-                      <svg
-                        enableBackground='new 0 0 15 15'
-                        viewBox='0 0 15 15'
-                        x={0}
-                        y={0}
-                        className='size-[0.625rem] fill-yellow-300 text-yellow-300'
-                      >
-                        <polygon
-                          points='7.5 .8 9.7 5.4 14.5 5.9 10.7 9.1 11.8 14.2 7.5 11.6 3.2 14.2 4.3 9.1 .5 5.9 5.3 5.4'
-                          strokeLinecap='round'
-                          strokeLinejoin='round'
-                          strokeMiterlimit={10}
-                        />
-                      </svg>
-                    </div>
-                    <svg
-                      enableBackground='new 0 0 15 15'
-                      viewBox='0 0 15 15'
-                      x={0}
-                      y={0}
-                      className='size-[0.625rem] fill-current text-gray-300'
-                    >
-                      <polygon
-                        points='7.5 .8 9.7 5.4 14.5 5.9 10.7 9.1 11.8 14.2 7.5 11.6 3.2 14.2 4.3 9.1 .5 5.9 5.3 5.4'
-                        strokeLinecap='round'
-                        strokeLinejoin='round'
-                        strokeMiterlimit={10}
-                      />
-                    </svg>
-                  </div>
-                  <div className='flex items-center mr-[1px] relative'>
-                    <div className='absolute top-0 left-0 h-full overflow-hidden' style={{ width: '100%' }}>
-                      <svg
-                        enableBackground='new 0 0 15 15'
-                        viewBox='0 0 15 15'
-                        x={0}
-                        y={0}
-                        className='size-[0.625rem] fill-yellow-300 text-yellow-300'
-                      >
-                        <polygon
-                          points='7.5 .8 9.7 5.4 14.5 5.9 10.7 9.1 11.8 14.2 7.5 11.6 3.2 14.2 4.3 9.1 .5 5.9 5.3 5.4'
-                          strokeLinecap='round'
-                          strokeLinejoin='round'
-                          strokeMiterlimit={10}
-                        />
-                      </svg>
-                    </div>
-                    <svg
-                      enableBackground='new 0 0 15 15'
-                      viewBox='0 0 15 15'
-                      x={0}
-                      y={0}
-                      className='size-[0.625rem] fill-current text-gray-300'
-                    >
-                      <polygon
-                        points='7.5 .8 9.7 5.4 14.5 5.9 10.7 9.1 11.8 14.2 7.5 11.6 3.2 14.2 4.3 9.1 .5 5.9 5.3 5.4'
-                        strokeLinecap='round'
-                        strokeLinejoin='round'
-                        strokeMiterlimit={10}
-                      />
-                    </svg>
-                  </div>
-                  <div className='flex items-center mr-[1px] relative'>
-                    <div className='absolute top-0 left-0 h-full overflow-hidden' style={{ width: '100%' }}>
-                      <svg
-                        enableBackground='new 0 0 15 15'
-                        viewBox='0 0 15 15'
-                        x={0}
-                        y={0}
-                        className='size-[0.625rem] fill-yellow-300 text-yellow-300'
-                      >
-                        <polygon
-                          points='7.5 .8 9.7 5.4 14.5 5.9 10.7 9.1 11.8 14.2 7.5 11.6 3.2 14.2 4.3 9.1 .5 5.9 5.3 5.4'
-                          strokeLinecap='round'
-                          strokeLinejoin='round'
-                          strokeMiterlimit={10}
-                        />
-                      </svg>
-                    </div>
-                    <svg
-                      enableBackground='new 0 0 15 15'
-                      viewBox='0 0 15 15'
-                      x={0}
-                      y={0}
-                      className='size-[0.625rem] fill-current text-gray-300'
-                    >
-                      <polygon
-                        points='7.5 .8 9.7 5.4 14.5 5.9 10.7 9.1 11.8 14.2 7.5 11.6 3.2 14.2 4.3 9.1 .5 5.9 5.3 5.4'
-                        strokeLinecap='round'
-                        strokeLinejoin='round'
-                        strokeMiterlimit={10}
-                      />
-                    </svg>
-                  </div>
-                  <div className='flex items-center mr-[1px] relative'>
-                    <div className='absolute top-0 left-0 h-full overflow-hidden' style={{ width: '100%' }}>
-                      <svg
-                        enableBackground='new 0 0 15 15'
-                        viewBox='0 0 15 15'
-                        x={0}
-                        y={0}
-                        className='size-[0.625rem] fill-yellow-300 text-yellow-300'
-                      >
-                        <polygon
-                          points='7.5 .8 9.7 5.4 14.5 5.9 10.7 9.1 11.8 14.2 7.5 11.6 3.2 14.2 4.3 9.1 .5 5.9 5.3 5.4'
-                          strokeLinecap='round'
-                          strokeLinejoin='round'
-                          strokeMiterlimit={10}
-                        />
-                      </svg>
-                    </div>
-                    <svg
-                      enableBackground='new 0 0 15 15'
-                      viewBox='0 0 15 15'
-                      x={0}
-                      y={0}
-                      className='size-[0.625rem] fill-current text-gray-300'
-                    >
-                      <polygon
-                        points='7.5 .8 9.7 5.4 14.5 5.9 10.7 9.1 11.8 14.2 7.5 11.6 3.2 14.2 4.3 9.1 .5 5.9 5.3 5.4'
-                        strokeLinecap='round'
-                        strokeLinejoin='round'
-                        strokeMiterlimit={10}
-                      />
-                    </svg>
-                  </div>
-                  <div className='flex items-center mr-[1px] relative'>
-                    <div className='absolute top-0 left-0 h-full overflow-hidden' style={{ width: '50%' }}>
-                      <svg
-                        enableBackground='new 0 0 15 15'
-                        viewBox='0 0 15 15'
-                        x={0}
-                        y={0}
-                        className='size-[0.625rem] fill-yellow-300 text-yellow-300'
-                      >
-                        <polygon
-                          points='7.5 .8 9.7 5.4 14.5 5.9 10.7 9.1 11.8 14.2 7.5 11.6 3.2 14.2 4.3 9.1 .5 5.9 5.3 5.4'
-                          strokeLinecap='round'
-                          strokeLinejoin='round'
-                          strokeMiterlimit={10}
-                        />
-                      </svg>
-                    </div>
-                    <svg
-                      enableBackground='new 0 0 15 15'
-                      viewBox='0 0 15 15'
-                      x={0}
-                      y={0}
-                      className='size-[0.625rem] fill-current text-gray-300'
-                    >
-                      <polygon
-                        points='7.5 .8 9.7 5.4 14.5 5.9 10.7 9.1 11.8 14.2 7.5 11.6 3.2 14.2 4.3 9.1 .5 5.9 5.3 5.4'
-                        strokeLinecap='round'
-                        strokeLinejoin='round'
-                        strokeMiterlimit={10}
-                      />
-                    </svg>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <ProductRating rating={product.rating} />
             <div className='ml-1 overflow-hidden leading-3 text-xs'>
               Đã bán {formatNumberToSocialStyle(product.sold)}
             </div>
           </div>
+          <div className='text-black/65 font-extralight text-[0.75rem] mt-3'>TP. Hồ Chí Minh</div>
         </div>
       </div>
     </Link>

@@ -14,8 +14,6 @@ export default function ProductList() {
     }
   })
 
-  console.log(data)
-
   return (
     <div className='bg-neutral-100 py-6'>
       <div className='container'>
