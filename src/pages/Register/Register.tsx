@@ -6,7 +6,7 @@ import { omit } from 'lodash'
 import { useContext } from 'react'
 import Input from '../../components/Input'
 import { schema, Schema } from '../../utils/rules'
-import { registerAccount } from '../../apis/auth.api'
+import authApi from '../../apis/auth.api'
 import { isAxiosUnprocessableEntityError } from '../../utils/utils'
 import { ErrorResponse } from '../../types/utils.type'
 import { AppContext } from '../../contexts/app.context'
@@ -27,7 +27,7 @@ export default function Register() {
   })
 
   const registerAccountMutation = useMutation({
-    mutationFn: (body: Omit<FormData, 'confirm_password'>) => registerAccount(body)
+    mutationFn: (body: Omit<FormData, 'confirm_password'>) => authApi.registerAccount(body)
   })
 
   const onSubmit = handleSubmit((data) => {

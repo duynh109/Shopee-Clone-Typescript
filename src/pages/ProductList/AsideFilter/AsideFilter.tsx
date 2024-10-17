@@ -95,8 +95,8 @@ export default function AsideFilter() {
                   <svg viewBox='0 0 9.5 8' className='size-4 mr-1' key={index}>
                     <defs>
                       <linearGradient id='ratingStarGradient' x1='50%' x2='50%' y1='0%' y2='100%'>
-                        <stop offset='{0}' stopColor='#ffca11' />
-                        <stop offset='{1}' stopColor='#ffad27' />
+                        <stop offset='0' stopColor='#ffca11' />
+                        <stop offset='1' stopColor='#ffad27' />
                       </linearGradient>
                       <polygon
                         id='ratingStar'
@@ -127,8 +127,8 @@ export default function AsideFilter() {
                   <svg viewBox='0 0 9.5 8' className='size-4 mr-1' key={index}>
                     <defs>
                       <linearGradient id='ratingStarGradient' x1='50%' x2='50%' y1='0%' y2='100%'>
-                        <stop offset='{0}' stopColor='#ffca11' />
-                        <stop offset='{1}' stopColor='#ffad27' />
+                        <stop offset='0' stopColor='#ffca11' />
+                        <stop offset='1' stopColor='#ffad27' />
                       </linearGradient>
                       <polygon
                         id='ratingStar'
