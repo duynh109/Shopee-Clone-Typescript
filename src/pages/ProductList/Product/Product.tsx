@@ -1,25 +1,32 @@
 import { Link } from 'react-router-dom'
+import { Product as ProductType } from '../../../types/product.type'
+import { formatCurrency, formatNumberToSocialStyle } from '../../../utils/utils'
 
-export default function Product() {
+interface Props {
+  product: ProductType
+}
+
+export default function Product({ product }: Props) {
   return (
     <Link to='/'>
       <div className='bg-white shadow rounded-sm hover:translate-y-[-0.05rem] hover:shadow-md duration-100 transition-transform overflow-hidden'>
         <div className='w-full pt-[100%] relative'>
+          <img src={product.image} alt={product.name} className='absolute top-0 left-0 w-full h-full object-cover' />
           <img
-            src='https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-ltmhx84z2cy24d_tn'
+            src='https://down-vn.img.susercontent.com/file/vn-11134258-7ras8-m1d5ib6irm8o68'
             className='absolute top-0 left-0 w-full h-full object-cover'
           />
         </div>
         <div className='flex flex-col p-2 overflow-hidden'>
-          <div className='min-h-[2rem] line-clamp-2 text-xs'>
-            Áo thun unisex form rộng tay ngắn SMILE cotton nam nữ, áo phông nam nữ form rộng thời trang unisex
-          </div>
+          <div className='min-h-[2rem] line-clamp-2 text-xs'>{product.name}</div>
           <div className='flex items-center mt-3'>
             <div className='text-orange mr-[5px]'>
               <span className='text-xs'>₫</span>
-              <span className='text-base'>37.200</span>
+              <span className='text-base'>{formatCurrency(product.price)}</span>
             </div>
-            <div className='line-through max-w-[50%] text-gray-500 text-sm'>₫79.000</div>
+            <div className='line-through max-w-[50%] text-gray-500 text-sm'>
+              ₫{formatCurrency(product.price_before_discount)}
+            </div>
             <div className='bg-[#feeeea] ml-1 p-[0.125rem]'>
               <span className='text-orange text-[0.625rem] leading-[0.75rem] block'>-53%</span>
             </div>
@@ -191,7 +198,9 @@ export default function Product() {
                 </div>
               </div>
             </div>
-            <div className='ml-1 overflow-hidden leading-3 text-xs'>Đã bán 6,7k</div>
+            <div className='ml-1 overflow-hidden leading-3 text-xs'>
+              Đã bán {formatNumberToSocialStyle(product.sold)}
+            </div>
           </div>
         </div>
       </div>
