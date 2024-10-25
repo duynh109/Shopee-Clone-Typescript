@@ -13,35 +13,38 @@ export default function Product({ product }: Props) {
   )
   return (
     <Link to='/'>
-      <div className='bg-white shadow rounded-sm hover:translate-y-[-0.05rem] hover:shadow-md duration-100 transition-transform overflow-hidden'>
-        <div className='w-full pt-[100%] relative'>
-          <img src={product.image} alt={product.name} className='absolute top-0 left-0 w-full h-full object-cover' />
+      <div className='overflow-hidden rounded-sm bg-white shadow transition-transform duration-100 hover:translate-y-[-0.05rem] hover:shadow-md'>
+        <div className='relative w-full pt-[100%]'>
+          <img src={product.image} alt={product.name} className='absolute left-0 top-0 h-full w-full object-cover' />
           <img
             src='https://down-vn.img.susercontent.com/file/vn-11134258-7ras8-m1d5ib6irm8o68'
-            className='absolute top-0 left-0 w-full h-full object-cover'
+            className='absolute left-0 top-0 h-full w-full object-cover'
           />
         </div>
-        <div className='flex flex-col p-2 overflow-hidden'>
-          <div className='min-h-[2rem] line-clamp-2 text-xs'>{product.name}</div>
-          <div className='flex items-center mt-3'>
-            <div className='text-orange mr-[5px]'>
+        <div className='flex flex-col overflow-hidden p-2'>
+          <div className='line-clamp-2 min-h-[2rem] text-xs'>{product.name}</div>
+          <div className='mt-3 flex items-center'>
+            <div className='mr-[5px] text-orange'>
               <span className='text-xs'>₫</span>
               <span className='text-base'>{formatCurrency(product.price)}</span>
             </div>
-            <div className='line-through max-w-[50%] text-gray-500 text-sm truncate'>
+            <div className='max-w-[50%] truncate text-sm text-gray-500 line-through'>
               ₫{formatCurrency(product.price_before_discount)}
             </div>
-            <div className='bg-[#feeeea] ml-1 p-[0.125rem]'>
-              <span className='text-orange text-[0.625rem] leading-[0.75rem] block'>-{discountPercentage}%</span>
+            <div className='ml-1 bg-[#feeeea] p-[0.125rem]'>
+              <span className='block text-[0.625rem] leading-[0.75rem] text-orange'>-{discountPercentage}%</span>
             </div>
           </div>
           <div className='mt-3 flex items-center'>
             <ProductRating rating={product.rating} />
-            <div className='ml-1 overflow-hidden leading-3 text-xs'>
+            <div className='ml-1 overflow-hidden text-xs leading-3'>
               Đã bán {formatNumberToSocialStyle(product.sold)}
             </div>
           </div>
-          <div className='text-black/65 font-extralight text-[0.75rem] mt-3'>TP. Hồ Chí Minh</div>
+          <div className='mt-3 flex text-[0.75rem] font-extralight text-black/65'>
+            <img src='https://deo.shopeemobile.com/shopee/modules-federation/live/0/shopee__item-card-standard-v2/0.1.36/pc/5dd7b4560d0e2d3190e8.svg' />
+            <span className='ml-1'>TP. Hồ Chí Minh</span>
+          </div>
         </div>
       </div>
     </Link>
