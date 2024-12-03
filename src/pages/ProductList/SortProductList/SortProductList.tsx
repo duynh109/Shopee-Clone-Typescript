@@ -16,7 +16,7 @@ export default function SortProductList({ queryConfig, pageSize }: Props) {
   const { sort_by = sortBy.createdAt, order } = queryConfig
   const navigate = useNavigate()
 
-  const isActiceSortBy = (sortByValue: Exclude<ProductListConfig['sort_by'], undefined>) => {
+  const isActiveSortBy = (sortByValue: Exclude<ProductListConfig['sort_by'], undefined>) => {
     return sort_by === sortByValue
   }
 
@@ -52,8 +52,8 @@ export default function SortProductList({ queryConfig, pageSize }: Props) {
           <div className='text-sm text-[#555]'>Sắp xếp theo</div>
           <button
             className={classNames('h-8 rounded-sm px-4 text-center text-sm capitalize', {
-              'bg-orange text-white hover:bg-orange/80': isActiceSortBy(sortBy.view),
-              'bg-white text-black hover:bg-slate-100': !isActiceSortBy(sortBy.view)
+              'bg-orange text-white hover:bg-orange/80': isActiveSortBy(sortBy.view),
+              'bg-white text-black hover:bg-slate-100': !isActiveSortBy(sortBy.view)
             })}
             onClick={() => handleSort(sortBy.view)}
           >
@@ -61,8 +61,8 @@ export default function SortProductList({ queryConfig, pageSize }: Props) {
           </button>
           <button
             className={classNames('h-8 rounded-sm px-4 text-center text-sm capitalize', {
-              'bg-orange text-white hover:bg-orange/80': isActiceSortBy(sortBy.createdAt),
-              'bg-white text-black hover:bg-slate-100': !isActiceSortBy(sortBy.createdAt)
+              'bg-orange text-white hover:bg-orange/80': isActiveSortBy(sortBy.createdAt),
+              'bg-white text-black hover:bg-slate-100': !isActiveSortBy(sortBy.createdAt)
             })}
             onClick={() => handleSort(sortBy.createdAt)}
           >
@@ -70,8 +70,8 @@ export default function SortProductList({ queryConfig, pageSize }: Props) {
           </button>
           <button
             className={classNames('h-8 rounded-sm px-4 text-center text-sm capitalize', {
-              'bg-orange text-white hover:bg-orange/80': isActiceSortBy(sortBy.sold),
-              'bg-white text-black hover:bg-slate-100': !isActiceSortBy(sortBy.sold)
+              'bg-orange text-white hover:bg-orange/80': isActiveSortBy(sortBy.sold),
+              'bg-white text-black hover:bg-slate-100': !isActiveSortBy(sortBy.sold)
             })}
             onClick={() => handleSort(sortBy.sold)}
           >
@@ -81,8 +81,8 @@ export default function SortProductList({ queryConfig, pageSize }: Props) {
             value={order || ''}
             onChange={(e) => handlePriceOrder(e.target.value as Exclude<ProductListConfig['order'], undefined>)}
             className={classNames('h-8 rounded-sm px-4 text-left text-sm outline-none', {
-              'bg-orange text-white hover:bg-orange/80': isActiceSortBy(sortBy.price),
-              'bg-white text-black hover:bg-slate-100': !isActiceSortBy(sortBy.price)
+              'bg-orange text-white hover:bg-orange/80': isActiveSortBy(sortBy.price),
+              'bg-white text-black hover:bg-slate-100': !isActiveSortBy(sortBy.price)
             })}
           >
             <option value='' disabled className='bg-white text-black'>
