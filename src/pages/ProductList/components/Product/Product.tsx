@@ -1,18 +1,16 @@
 import { Link } from 'react-router-dom'
 import { Product as ProductType } from '../../../../types/product.type'
-import { formatCurrency, formatNumberToSocialStyle } from '../../../../utils/utils'
+import { formatCurrency, formatNumberToSocialStyle, rateSale } from '../../../../utils/utils'
 import ProductRating from '../../../../components/ProductRating'
+import path from '../../../../constants/path'
 
 interface Props {
   product: ProductType
 }
 
 export default function Product({ product }: Props) {
-  const discountPercentage = Math.round(
-    ((product.price_before_discount - product.price) / product.price_before_discount) * 100
-  )
   return (
-    <Link to='/'>
+    <Link to={`${path.home}${product._id}`}>
       <div className='overflow-hidden rounded-sm bg-white shadow transition-transform duration-100 hover:translate-y-[-0.05rem] hover:shadow-md'>
         <div className='relative w-full pt-[100%]'>
           <img src={product.image} alt={product.name} className='absolute left-0 top-0 h-full w-full object-cover' />
@@ -32,7 +30,9 @@ export default function Product({ product }: Props) {
               ₫{formatCurrency(product.price_before_discount)}
             </div>
             <div className='ml-1 bg-[#feeeea] p-[0.125rem]'>
-              <span className='block text-[0.625rem] leading-[0.75rem] text-orange'>-{discountPercentage}%</span>
+              <span className='block text-[0.625rem] leading-[0.75rem] text-orange'>
+                -{rateSale(product.price_before_discount, product.price)}%
+              </span>
             </div>
           </div>
           <div className='mt-3 flex items-center'>

@@ -44,7 +44,7 @@ export default function AsideFilter({ queryConfig, categories }: Props) {
   })
 
   const navigate = useNavigate()
-  console.log(errors)
+  // console.log(errors)
 
   const onSubmit = handleSubmit((data) => {
     navigate({
