@@ -7,7 +7,8 @@ import productApi from '../../apis/product.api'
 import ProductRating from '../../components/ProductRating'
 import InputNumber from '../../components/InputNumber'
 import { formatCurrency, formatNumberToSocialStyle, getIdFromNameId, rateSale } from '../../utils/utils'
-import { Product } from '../../types/product.type'
+import { Product as ProductType, ProductListConfig } from '../../types/product.type'
+import Product from '../ProductList/components/Product'
 
 export default function ProductDetail() {
   const { nameId } = useParams()
@@ -25,13 +26,24 @@ export default function ProductDetail() {
     [product, currentIndexImages]
   )
 
+  const queryConfig: ProductListConfig = { limit: '20', page: '1', category: product?.category._id }
+  const { data: productsData } = useQuery({
+    queryKey: ['products', queryConfig],
+    queryFn: () => {
+      return productApi.getProducts(queryConfig)
+    },
+    enabled: Boolean(product),
+    staleTime: 3 * 60 * 1000
+  })
+  console.log(productsData)
+
   useEffect(() => {
     if (product && product.images.length > 0) setActiveImage(product.images[0])
   }, [product])
 
   const next = () => {
     console.log(currentIndexImages[1])
-    if (currentIndexImages[1] < (product as Product).images.length) {
+    if (currentIndexImages[1] < (product as ProductType).images.length) {
       setCurrentIndexImages((prev) => [prev[0] + 1, prev[1] + 1])
     }
   }
@@ -219,6 +231,18 @@ export default function ProductDetail() {
               }}
             />
           </div>
+        </div>
+        <div className='mt-6'>
+          <div className='uppercase text-gray-400'>CÓ THỂ BẠN CŨNG THÍCH</div>
+          {productsData && (
+            <div className='mt-3 grid grid-cols-2 gap-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6'>
+              {productsData.data.data.products.map((product) => (
+                <div className='col-span-1' key={product._id}>
+                  <Product product={product} />
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </div>

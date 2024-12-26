@@ -1,17 +1,17 @@
 import { createSearchParams, Link, useNavigate } from 'react-router-dom'
+import { omit } from 'lodash'
+import { yupResolver } from '@hookform/resolvers/yup'
+import { ObjectSchema } from 'yup'
+import classNames from 'classnames'
 import path from '../../../../constants/path'
 import Button from '../../../../components/Button'
-import { QueryConfig } from '../../ProductList'
 import { Category } from '../../../../types/category.type'
-import classNames from 'classnames'
 import InputNumber from '../../../../components/InputNumber'
 import { useForm, Controller } from 'react-hook-form'
 import { Schema, schema } from '../../../../utils/rules'
-import { yupResolver } from '@hookform/resolvers/yup'
-import { ObjectSchema } from 'yup'
 import { NoUndefinedField } from '../../../../types/utils.type'
 import RatingStars from '../RatingStars'
-import { omit } from 'lodash'
+import { QueryConfig } from '../../../../hooks/useQueryConfig'
 interface Props {
   queryConfig: QueryConfig
   categories: Category[]
