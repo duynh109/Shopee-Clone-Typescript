@@ -12,6 +12,7 @@ import { Schema, schema } from '../../../../utils/rules'
 import { NoUndefinedField } from '../../../../types/utils.type'
 import RatingStars from '../RatingStars'
 import { QueryConfig } from '../../../../hooks/useQueryConfig'
+import InputV2 from '../../../../components/InputV2'
 interface Props {
   queryConfig: QueryConfig
   categories: Category[]
@@ -140,7 +141,7 @@ export default function AsideFilter({ queryConfig, categories }: Props) {
         <div className='text-sm'>Khoảng Giá</div>
         <form className='mt-4' onSubmit={onSubmit}>
           <div className='flex items-start'>
-            <Controller
+            {/* <Controller
               control={control}
               name='price_min'
               render={({ field }) => {
@@ -158,6 +159,19 @@ export default function AsideFilter({ queryConfig, categories }: Props) {
                     }}
                   />
                 )
+              }}
+            /> */}
+
+            <InputV2
+              control={control}
+              name='price_min'
+              type='number'
+              className='w-20 grow text-xs'
+              placeholder='₫ TỪ'
+              classNameInput='p-1 w-full outline-none border border-gray-300 focus:border-gray-500 rounded-sm focus:shadow-sm'
+              classNameError='hidden'
+              onChange={() => {
+                trigger('price_max')
               }}
             />
 
